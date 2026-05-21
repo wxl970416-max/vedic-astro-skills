@@ -216,12 +216,18 @@ SECTION_REGISTRY = [
      ["p2b_planets.md"]),
     (19, "planets_c", "Part II-C: Planets (Sa/Ra/Ke)",         "第二部分C：行星审计 (土/罗/计)",
      ["p2c_planets.md"]),
+    (19, "planets_d", "Part II-D: Planets (Summary)",           "第二部分D：行星审计 (总结)",
+     ["p2d_planets.md"]),
     (20, "planets",   "Part II: Planetary Audit (P1-P12)",     "第二部分：行星审计 (P1-P12)",
      ["02_planets.md", "p2_planets.md", "planets.md"]),
-    (30, "divisional","Part III: Divisional Cross-Analysis",   "第三部分：分盘交叉分析",
-     ["p3_divisional.md", "03_d9.md", "p3_d9.md", "d9.md"]),
-    (40, "houses",    "Part IV: House Diagnostics",            "第四部分：宫位诊断",
-     ["04_houses.md", "p4_houses.md", "houses.md"]),
+    (28, "d9",        "Part III-A: D9 Navamsha Analysis",       "第三部分A：D9盘分析",
+     ["p3a_d9.md"]),
+    (30, "divisional","Part III-B: Divisional Cross-Analysis",  "第三部分B：分盘交叉分析",
+     ["p3b_divisional.md", "p3_divisional.md", "03_d9.md", "p3_d9.md", "d9.md"]),
+    (38, "houses_a",  "Part IV-A: House Diagnostics (1-6)",     "第四部分A：宫位诊断 (1-6宫)",
+     ["p4a_houses.md"]),
+    (40, "houses",    "Part IV-B: House Diagnostics (7-12)",    "第四部分B：宫位诊断 (7-12宫)",
+     ["p4b_houses.md", "04_houses.md", "p4_houses.md", "houses.md"]),
     (50, "life",      "Part V: Life Architecture",             "第五部分：人生架构总结",
      ["05_life.md", "p5a_life.md", "p5_life.md", "life.md"]),
     (55, "life2",     "Part V (cont.): Life Architecture",     "第五部分（续）：人生架构总结",
@@ -279,7 +285,7 @@ def find_files(folder):
 
 
 def detect_package(found, lang="cn"):
-    has_core = any(k in found for k in ["core", "planets", "d9", "houses", "life"])
+    has_core = any(k in found for k in ["core", "planets", "planets_a", "d9", "houses", "houses_a", "life"])
     has_career = any(k in found for k in ["career", "career1", "career2", "career3"])
     has_love = any(k in found for k in ["love", "love1", "love2"])
     has_qa = "qa" in found
@@ -386,8 +392,8 @@ Examples:
         include_set = set(args.include.lower().split(","))
         # 定义 section key → group 映射
         group_map = {
-            "core": {"basics", "planets", "planets_a", "planets_b", "planets_c",
-                     "divisional", "houses", "life", "life2", "appendix"},
+            "core": {"basics", "planets", "planets_a", "planets_b", "planets_c", "planets_d",
+                     "d9", "divisional", "houses", "houses_a", "life", "life2", "appendix"},
             "career": {"career", "career1", "career2", "career3"},
             "love": {"love", "love1", "love2"},
             "qa": {"qa"},
