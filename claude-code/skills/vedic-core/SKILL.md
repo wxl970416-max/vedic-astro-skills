@@ -703,8 +703,9 @@ Step 1-2完成后，输出以下消息并等待用户确认：
   → 给时间节点：哪段大运是事业黄金期
 
 板块4: 感情/婚姻 — 何时遇到对的人
-  引用: p4b(7宫诊断), p3a(Venus/Jupiter的D9结算), structured_data(D9 Lagna)
-  → 配偶画像：什么样的人？怎么认识的？
+  引用: p4b(7宫诊断), p3a(Venus/Jupiter的D9结算), structured_data(D9 Lagna, DK争议段, UL)
+  → 配偶画像：L7+Venus+DK三角交叉（DK争议=不一致时弱化DK，以L7+Venus为主）
+  → 配偶来源线索：UL所在宫位/星座
   → 感情的最大挑战和最大优势
   → 关键窗口期
 
@@ -724,8 +725,8 @@ Step 1-2完成后，输出以下消息并等待用户确认：
   → 什么时候可能定下来
 
 板块8: 社交/声誉 — 别人怎么看你
-  引用: structured_data(AL位置), p4b(11宫诊断)
-  → 公众形象vs真实自我
+  引用: structured_data(AL位置, Jaimini特殊点段), p4b(11宫诊断)
+  → AL落宫/落座 vs Lagna → 公众形象vs真实自我（AL≠Lagna=形象错位）
   → 你的名声从哪来
 
 板块9: 灵性/成长 — 灵魂课题

@@ -51,15 +51,18 @@ Node模式: [Mean Node / True Node]
 ### Chara Karakas
 | 排名 | Karaka | 行星 | 有效度数 | 说明 |
 |------|--------|------|---------|------|
-| 1 | AK | [planet] | [deg] | 灵魂指示星 |
-| 2 | AmK | [planet] | [deg] | 事业指示星 |
+| 1 | AK | [planet] | [deg] | 灵魂指示星（core板块1/9, career Phase3引用） |
+| 2 | AmK | [planet] | [deg] | 事业指示星（career Phase2引用） |
 | 3 | BK | [planet] | [deg] | 兄弟指示星 |
 | 4 | MK | [planet] | [deg] | 母亲指示星 |
-| 5 | PK | [planet] | [deg] | 子女指示星 |
+| 5 | PK | [planet] | [deg] | 子女/恋爱指示星（love引用） |
 | 6 | GK | [planet] | [deg] | 障碍指示星 |
-| 7 | DK | [planet] | [deg] | 配偶指示星 |
+| 7 | DK | [planet] | [deg] | 配偶指示星（love引用） |
+| 8(8K) | — | Rahu | [30°-原始度数] | 仅8K体系参与排序 |
 
-> Rahu参与8K时度数 = 30° - 原始度数
+> 7K体系：Sun~Saturn 共 7 颗，按宫内度数降序排列
+> 8K体系：Sun~Saturn+Rahu 共 8 颗，Rahu度数 = 30° - 原始度数
+> 7K 为主表，8K 仅用于 DK 争议比对
 
 ### DK争议
 ```
@@ -67,6 +70,20 @@ Node模式: [Mean Node / True Node]
 8K体系 DK = [planet]
 状态: [一致 / 不一致 → 分析时弱化DK，以宫位结构为主]
 ```
+> 下游消费：vedic-love 的配偶画像分析（DK星座/落宫/D9落点）
+> 不一致时：love 模块以 7 宫主+Venus 为主，DK 降为辅助参考
+
+### Jaimini 特殊点
+| 点位 | 星座 | 宫位(从Lagna数) | 说明 |
+|------|------|-----------------|------|
+| AL (Arudha Lagna) | [sign] | [house] | 社会人设/外界形象（core板块8引用） |
+| UL (Upapada Lagna) | [sign] | [house] | 婚姻/配偶来源（love引用） |
+
+> 计算规则 (BPHS标准)：
+> AL = 1宫主从1宫数X宫，再从1宫主数X宫（X=1宫主距Lagna的距离）
+> UL = 12宫主从12宫数X宫，再从12宫主数X宫
+> 例外：Arudha不可落在本宫(→取第10宫) 或对宫(→取第4宫)
+> 数据来源：calc engine `special_points['AL'/'UL']` 或 JHora 图中 AL/UL 标记
 
 ### Nakshatra
 | 行星 | Nakshatra | Pada | Nakshatra主 |
@@ -78,11 +95,18 @@ Node模式: [Mean Node / True Node]
 ## 量化数据
 
 ### Shadbala
-| 行星 | Rupas | 百分比 | 排名 | 强弱 |
-|------|-------|--------|------|------|
-| [planet] | [val] | [pct]% | [rank] | [强/中/弱] |
+| 行星 | Rupas | 百分比 | 排名 | 强弱 | 数据来源 |
+|------|-------|--------|------|------|---------|
+| [planet] | [val] | [pct]% | [rank] | [强/中/弱] | [JHora/calc] |
 
 > 强: ≥150% | 中: 100-149% | 弱: <100%
+
+> **⚠️ 数据来源优先级**：
+> 1. **JHora PDF**（金标准）→ 提取原始 Rupas/百分比，精度最高
+> 2. **calc engine**（近似值）→ 仅用于**相对排序和分级**，不应直接对比绝对数值
+> 3. PyJHora 底层 Shadbala 算法与 JHora 存在系统性偏差（分盘蝴蝶效应、aspect插值公式、日出折射等），
+>    平均每颗行星偏差 1-2 rupas，个别可达 4 rupas。**排序基本正确，数值不精确。**
+> 4. 下游（core/love/career）引用时，以**排序和强弱分级**为准，避免引用具体数值
 
 ### SAV (Sarvashtakavarga)
 
@@ -199,9 +223,10 @@ D5  [✅/⚠️] [说明]
  7c. 盈月/亏月       [盈月/亏月] [距Sun X°]
  8. Nakshatra↔度数   [✅/❌]
  9. Chara Karaka排序 [✅/❌]
-10. Dasha时长常数    [✅/❌]
-11. D9公式交叉       [✅/❌]
-12. Ra-Ke分盘校验    [✅/❌] [各分盘结果]
+ 10. Dasha时长常数    [✅/❌]
+ 11. D9公式交叉       [✅/❌]
+ 12. Ra-Ke分盘校验    [✅/❌] [各分盘结果]
+ 13. AL/UL位置        [✅/❌/未提取] [AL=sign/house, UL=sign/house]
 ```
 
 ## 盘面初验结果

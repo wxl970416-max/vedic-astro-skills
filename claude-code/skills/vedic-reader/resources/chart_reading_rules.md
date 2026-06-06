@@ -76,16 +76,21 @@
 - AI最容易在此处遗漏，必须特别注意小括号或上标
 - 在structured_data.md中必须标注每颗行星是否逆行
 
-### 特殊标记（记录，部分会在分析中使用）
+### 特殊标记（⚠️ AL/UL 必须提取，其余记录备用）
 
-| 缩写 | 含义 | 分析中是否使用 |
-|------|------|-------------|
-| AL | Arudha Lagna 象微宫 | 是（外界形象） |
-| UL | Upapada Lagna 后世宫 | 是（婚姻/配偶） |
-| GL | Ghatika Lagna | 是（权力/地位） |
-| HL | Hora Lagna | 是（财务） |
-| SL | Sree Lagna 吉祥点 | 是（财富） |
-| PP | Pranapada | 记录备用 |
-| BB | Bhrigu Bindu | 记录备用 |
-| Md/Gk | Mandi/Gulika | 是（业力障碍） |
-| A2-A12 | 各宫Arudha Padas | 记录备用 |
+| 缩写 | 含义 | 提取优先级 | 下游使用 |
+|------|------|-----------|---------|
+| AL | Arudha Lagna 象微宫 | **必须提取** | core板块8（社会形象） |
+| UL | Upapada Lagna 后世宫 | **必须提取** | love（婚姻/配偶来源） |
+| GL | Ghatika Lagna | 记录备用 | 暂无下游引用 |
+| HL | Hora Lagna | 记录备用 | 暂无下游引用 |
+| SL | Sree Lagna 吉祥点 | 记录备用 | 暂无下游引用 |
+| PP | Pranapada | 记录备用 | — |
+| BB | Bhrigu Bindu | 记录备用 | — |
+| Md/Gk | Mandi/Gulika | 记录备用 | — |
+| A2-A12 | 各宫Arudha Padas | 记录备用 | — |
+
+> **AL/UL 提取规则**：
+> - 图中有标记 → 记录其所在星座格子
+> - 图中无标记 → 用BPHS公式从宫主表+行星位置计算（参考data_contract）
+> - calc engine 可用时 → 优先用 `special_points['AL'/'UL']`
