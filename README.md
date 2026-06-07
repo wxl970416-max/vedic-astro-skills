@@ -94,7 +94,7 @@ vedic-rectifier/
 # 依赖清单 / Dependencies
 pysweph>=2.10      # Swiss Ephemeris — 天文计算引擎 / astronomical engine
 dashaflow>=0.3     # 尊贵度 + Karakas / dignity + Jaimini Karakas
-PyJHora>=4.8.0     # SAV/BAV + 分盘 + Shadbala / divisional charts + strength
+PyJHora==4.8.6     # SAV/BAV + 分盘 + Shadbala / divisional charts + strength
 pytz>=2024.1       # 时区 / timezone
 ```
 
