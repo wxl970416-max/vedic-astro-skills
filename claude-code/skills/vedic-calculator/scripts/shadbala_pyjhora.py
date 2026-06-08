@@ -446,20 +446,20 @@ def calculate_shadbala_fixed(year, month, day, hour, minute, lat, lon, tz_offset
     # ========== ISHTA PHALA / KASHTA PHALA (BPHS standard) ==========
     # Ishta = sqrt(Uchcha_Bala * Cheshta_Bala)
     # Kashta = sqrt((60 - Uchcha_Bala) * (60 - Cheshta_Bala))
-    # For Sun: cheshta = ayana_bala (Sun has no Cheshta Bala, uses Ayana instead)
+    # For Sun: cheshta = ayana_bala / 2 (ayana already ×2 for Sun in BPHS, undo for Ishta)
     # For Moon: cheshta = Moon's special value (paksha-derived, capped at 60)
     import math
-    ayana_raw = strength._ayana_bala(jd, place)  # Already computed in kaala section
+    ayana_raw = strength._ayana_bala(jd, place)
     cheshta_for_ishta = list(cheshta)  # copy
-    cheshta_for_ishta[0] = min(60, ayana_raw[0])  # Sun uses ayana bala
+    cheshta_for_ishta[0] = ayana_raw[0] / 2.0  # Sun: undo the ×2 applied in ayana_bala
     cheshta_for_ishta[1] = pb_base  # Moon: Cheshta Rashmi = pb_base (0-60)
     ishta = [0.0] * 7
     kashta = [0.0] * 7
     for i in range(7):
-        u = min(60, max(0, ub[i]))
-        c = min(60, max(0, cheshta_for_ishta[i]))
-        ishta[i] = round(math.sqrt(u * c), 2)
-        kashta[i] = round(math.sqrt((60 - u) * (60 - c)), 2)
+        u = ub[i]
+        c = cheshta_for_ishta[i]
+        ishta[i] = round(math.sqrt(abs(u * c)), 2)
+        kashta[i] = round(math.sqrt(abs((60 - u) * (60 - c))), 2)
 
     bphs_required = const.shad_bala_factors  # [6.5, 6, 5, 7, 6.5, 5.5, 5]
 
